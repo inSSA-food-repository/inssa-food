@@ -12,3 +12,12 @@
   align-items: center;
   flex-direction: column;
 }
+
+/* 2. History 관련 */
+/* 2.1 History - 레이아웃 */
+
+.history-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
