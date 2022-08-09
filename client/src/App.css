@@ -2,7 +2,7 @@
 .App {
 }
 .header-conatiner {
-  max-width: fit-content;
+  /* max-width: fit-content; */
 }
 
 /* 1. Intro 관련 */
@@ -17,24 +17,6 @@
 /* 2.1 History - 레이아웃 */
 
 .history-container {
-  margin-top: 150px;
   /* width: 410px !important; */
   height: 500px !important;
-  /* display: block !important; */
-  padding: 0.5rem !important;
-  /* display: flex; */
-  align-items: center;
-  /* flex-direction: column; */
-}
-
-.SliderWrapper {
-  width: 100% !important;
-  display: block !important;
-  align-items: center;
-}
-
-.eftmlr div {
-  display: block !important;
-  width: 300px !important;
-  height: 0% !important;
 }
