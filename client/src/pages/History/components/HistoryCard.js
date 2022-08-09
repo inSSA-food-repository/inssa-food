@@ -13,7 +13,10 @@ const HistoryCard = (props) => {
   console.log(food_img);
   return (
     <Card
-      sx={{ maxWidth: 300, maxHeight: 300 }}
+      sx={{
+        bgcolor: "#fbe4b1",
+        display: "block",
+      }}
       className="historyCard"
       id={id}
     >
@@ -33,4 +36,5 @@ const HistoryCard = (props) => {
     </Card>
   );
 };
+
 export default HistoryCard;

@@ -1,0 +1,13 @@
+.card-slider {
+  width: 500px !important;
+  height: 500px !important;
+  display: block !important;
+}
+
+.historyCard {
+  /* background-color: black !important; */
+  display: block !important;
+  width: 250px !important;
+  height: 400px !important;
+  align-items: center !important;
+}
