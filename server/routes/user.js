@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const asyncHandler = require("../utils/async-handler");
-const { User } = require("../models/schemas/user");
+const {User}  = require("../models/schemas/user");
 
 // //필요시 활성화
 // const jwt = require('jsonwebtoken')
@@ -14,7 +14,8 @@ router.post(
   "/signUp",
   asyncHandler(async (req, res, next) => {
     console.log("[server] post-signup 요청수신");
-    
+    const {email, password, name} = req.body;
+    console.log(email);
     const checkEmail = await User.findOne({ email });
     if (checkEmail) {
       // throw new Error("이미 가입된 이메일입니다.");

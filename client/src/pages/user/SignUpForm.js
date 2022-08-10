@@ -3,7 +3,7 @@ import $ from "jquery";
 import { useRef, useState } from "react";
 import axios from "axios";
 
-const SignUpForm = ({ signUpData, onChangeSignUpData, setSignUpdata }) => {
+const SignUpForm = ({ signUpData, onSignUpChange, setSignUpdata }) => {
 
     const emailRef = useRef();
 
@@ -57,6 +57,7 @@ const SignUpForm = ({ signUpData, onChangeSignUpData, setSignUpdata }) => {
     }
 
     const sendSignUpData = async () => {
+        console.log("SIGNUPDATA :", signUpData)
         return await axios.post(port.url + "/user/signUp", signUpData);
     }
 
@@ -66,19 +67,19 @@ const SignUpForm = ({ signUpData, onChangeSignUpData, setSignUpdata }) => {
                 <form>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email address</label>
-                        <input type="email" ref={emailRef} value={signUpData.email} onChange={onChangeSignUpData} className="form-control" name="email" id="email" aria-describedby="emailHelp" />
+                        <input type="email" ref={emailRef} value={signUpData.email} onChange={onSignUpChange} className="form-control" name="email" id="email" aria-describedby="emailHelp" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
-                        <input type="password" value={signUpData.password} onChange={onChangeSignUpData} className="form-control" name="password" id="password" />
+                        <input type="password" value={signUpData.password} onChange={onSignUpChange} className="form-control" name="password" id="password" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="rePassword" className="form-label">Re-Password</label>
-                        <input type="password" value={signUpData.rePassword} onChange={onChangeSignUpData} className="form-control" name="rePassword" id="rePassword" />
+                        <input type="password" value={signUpData.rePassword} onChange={onSignUpChange} className="form-control" name="rePassword" id="rePassword" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">Name</label>
-                        <input type="text" value={signUpData.name} onChange={onChangeSignUpData} className="form-control" name="name" id="name" />
+                        <input type="text" value={signUpData.name} onChange={onSignUpChange} className="form-control" name="name" id="name" />
                     </div>
                     <div className="mb-3">
                         <p className="text-danger">
