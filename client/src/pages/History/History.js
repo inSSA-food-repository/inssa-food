@@ -1,13 +1,24 @@
 import HistoryCard from "./components/HistoryCard";
+import Toggle from "./components/Toggle";
+import "./components/Toggle.scss";
+import ToggleButtonSizes from "./components/ButtonGroup";
 import dummyData from "./data/dummyData";
-
-// import Slider from "react-touch-drag-slider";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
 import "./History.css";
 
+import { useState } from "react";
+
 const History = () => {
+  const [isSlide, setIsSlide] = useState(true);
+
+  const onClickAlbum = () => {
+    setIsSlide(true);
+  };
+  const onClickSlide = () => {
+    setIsSlide(false);
+  };
+
   const dummy = dummyData.historyCard;
   console.log(dummy[0].id);
 
@@ -31,31 +42,50 @@ const History = () => {
 
   return (
     <div className="history-container">
-      <Carousel
-        swipeable={true}
-        draggable={true}
-        showDots={true}
-        responsive={responsive}
-        // ssr={true} // means to render carousel on server-side.
-        // infinite={true}
-        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-        // autoPlaySpeed={1000}
-        // keyBoardControl={true}
-        // customTransition="all .5"
-        transitionDuration={500}
-      >
-        {dummy.map((item, index) => {
-          return (
-            <HistoryCard
-              key={index}
-              id={item?.id}
-              name={item?.name}
-              food_img={item?.food_img}
-              desc={item?.description}
-            />
-          );
-        })}
-      </Carousel>
+      <h2>History Page</h2>
+
+      <div className="history-box">
+        <ToggleButtonSizes
+          className="Toggle"
+          onClickAlbum={onClickAlbum}
+          onClickSlide={onClickSlide}
+        />
+        {isSlide ? (
+          <div className="grid-container">
+            {dummy.map((item, index) => {
+              return (
+                <img
+                  width="125px"
+                  height="125px"
+                  className="grid-item scale"
+                  src={item.food_img}
+                  alt="React"
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <Carousel
+            swipeable={true}
+            draggable={true}
+            showDots={true}
+            responsive={responsive}
+            transitionDuration={500}
+          >
+            {dummy.map((item, index) => {
+              return (
+                <HistoryCard
+                  key={index}
+                  id={item?.id}
+                  name={item?.name}
+                  food_img={item?.food_img}
+                  desc={item?.description}
+                />
+              );
+            })}
+          </Carousel>
+        )}
+      </div>
     </div>
   );
 };
