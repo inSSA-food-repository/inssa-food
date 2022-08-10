@@ -13,7 +13,7 @@ const Header = () => {
   const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   
   const onLoginClick = () => {
-    navigate('/oauth/signin');
+    navigate('/login');
   }
 
   return (

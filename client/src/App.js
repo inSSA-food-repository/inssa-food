@@ -27,12 +27,12 @@ function App() {
 
       <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='login' element={<Login />} />
+      <Route path='login' element={<Login />}>
+      </Route>
       <Route path="history" element={<History/>} />
       <Route path="oauth">
             <Route path="kakao/callback" element={<KakaoCallBack />} />
             <Route path="kakao/signup" element={<SocialSignUp />} />
-            <Route path="" element={<SigninForm />} />
       </Route>
       </Routes>
 

@@ -43,6 +43,7 @@ router.post(
   "/login",
   asyncHandler(async (req, res, next) => {
     console.log("[server] post-login 요청수신");
+    console.log(User)
     const { email, password } = req.body;
     const checkEmail = await User.findOne({ email });
 
