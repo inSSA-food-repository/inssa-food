@@ -1,14 +1,14 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
-const asyncHandler = require('./../utils/async-handler');
-// const cryto = require('crypto');
-const { User } = require('../models');
-// const jwt = require('jsonwebtoken');
-// const jwtConfig = require('./../config/jwtConfig');
+const asyncHandler = require("./../utils/async-handler");
+const crypto = require("crypto");
+const { User } = require("../models/");
+const jwt = require("jsonwebtoken");
+const jwtConfig = require("./../config/jwtConfig");
 // const nodeMailer = require('nodemailer');
 
 router.post(
-  '/signUp',
+  "/signUp",
   asyncHandler(async (req, res, next) => {
     const { email, password, name } = req.body;
 
@@ -20,7 +20,7 @@ router.post(
       // throw new Error("이미 가입된 이메일입니다.");
       res.status(500);
       res.json({
-        error: '이미 가입된 이메일입니다.',
+        error: "이미 가입된 이메일입니다.",
       });
       return;
     }
@@ -32,13 +32,13 @@ router.post(
     });
 
     res.json({
-      result: '회원가입이 완료되었습니다. 로그인을 해주세요.',
+      result: "회원가입이 완료되었습니다. 로그인을 해주세요.",
     });
   })
 );
 
 router.post(
-  '/login',
+  "/login",
   asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
 
@@ -49,7 +49,7 @@ router.post(
     if (!checkEmail) {
       res.status(401);
       res.json({
-        fail: '존재하지 않는 이메일입니다.',
+        fail: "존재하지 않는 이메일입니다.",
       });
       return;
     }
@@ -57,7 +57,7 @@ router.post(
     if (hashPassword !== checkEmail.password) {
       res.status(401);
       res.json({
-        fail: '비밀번호가 틀렸습니다.',
+        fail: "비밀번호가 틀렸습니다.",
       });
       return;
     }
@@ -68,11 +68,13 @@ router.post(
       },
       jwtConfig.secret,
       {
-        expiresIn: '1d', //1y,1d,2h,1m,5s
+        expiresIn: "1d", //1y,1d,2h,1m,5s
       },
       (err, token) => {
         if (err) {
-          res.status(401).json({ status: false, message: '로그인을 해주세요.' });
+          res
+            .status(401)
+            .json({ status: false, message: "로그인을 해주세요." });
         } else {
           res.json({
             status: true,
@@ -88,23 +90,23 @@ router.post(
 
 //비밀번호 찾기 : 2번
 router.post(
-  '/find/password',
+  "/find/password",
   asyncHandler(async (req, res, nex) => {
     //email값을 가져옵니다.
     let { email } = req.body;
     //email에 해당하는 사용자 정보를 가져옵니다.
     let user = await User.findOne({ email });
     //email을 전송하는데 사용하게 될 email
-    let myEmail = 'dudspsdl123321@gmail.com';
+    let myEmail = "dudspsdl123321@gmail.com";
     //nodemailer를 사용하여 메일전송을합니다.
     let transporter = nodeMailer.createTransport({
-      service: 'gmail',
-      host: 'smtp.gmail.com',
+      service: "gmail",
+      host: "smtp.gmail.com",
       port: 587,
       secure: false,
       auth: {
         user: myEmail,
-        pass: 'wsdjonteaayznmkm',
+        pass: "wsdjonteaayznmkm",
       },
     });
 
@@ -127,14 +129,14 @@ router.post(
     let info = await transporter.sendMail({
       from: `"Elice" <${myEmail}>`,
       to: user.email,
-      subject: 'Reset Password By Elice',
+      subject: "Reset Password By Elice",
       html: `<b>초기화 비밀번호 : ${randomPassword}</b>`,
     });
 
     console.log(info.messageId);
 
     //응답처리
-    res.json({ result: '이메일을 전송하였습니다.' });
+    res.json({ result: "이메일을 전송하였습니다." });
   })
 );
 
@@ -142,11 +144,11 @@ router.post(
 const randomPw = () => {
   return Math.floor(Math.random() * 10 ** 8)
     .toString()
-    .padStart('0', 8);
+    .padStart("0", 8);
 };
 
 const passwordHash = (password) => {
-  return cryto.createHash('sha1').update(password).digest('hex');
+  return crypto.createHash("sha1").update(password).digest("hex");
 };
 
 module.exports = router;
