@@ -9,7 +9,6 @@ import axios from "axios";
 
 import urlPort from "./../../../../data/urlPort.json";
 
-
 const ResultInfo = () => {
   const navigate = useNavigate();
 
@@ -23,11 +22,13 @@ const ResultInfo = () => {
   const [cookies, setCookie, removeCookie] = useCookies([
     "inputImage",
     "foodInfo",
+    "imgFile",
   ]);
 
   useEffect(() => {
     console.log("params.id : ", params.id);
-
+    console.log("imgFile:", cookies.imgFile.url);
+    // getImgFile().then((res))
     getFoodInfo().then((res) => {
       // console.log(res);
       setFoodInfo(res.data.food);
@@ -57,6 +58,9 @@ const ResultInfo = () => {
     return await axios.get(`${urlPort.server}/foodInfo/${params.id}/find`);
   };
 
+  // const getImgFile = async () => {
+  //   return await axios.get(`${urlPort.server}/api/img/${cookies.imgFile}`);
+  // };
 
   return (
     <div className="resultInfo-container">
@@ -66,7 +70,7 @@ const ResultInfo = () => {
           <div className="result-item img-box">
             <img
               className="result-item img"
-              src={cookies.inputImage}
+              src={"http://localhost:8080" + cookies.imgFile.url}
               alt="react"
               width={"200px"}
             />

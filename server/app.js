@@ -10,7 +10,7 @@ const coreRouter = require("./routes/core");
 const historiesRouter = require("./routes/histories");
 const foodInfoRouter = require("./routes/foodInfo");
 
-const imgRouter = require('./routes/img')
+const imgRouter = require("./routes/img");
 
 //
 const authMiddleware = require("./routes/auth");
@@ -43,7 +43,9 @@ app.use("/foodInfo", foodInfoRouter);
 
 app.use("/histories", authMiddleware, historiesRouter);
 
-app.use('/api', imgRouter);
+app.use("/api", imgRouter);
+
+app.use("/uploads", express.static("uploads"));
 
 // 4. 서버 구동
 app.listen(ports.server, () => {

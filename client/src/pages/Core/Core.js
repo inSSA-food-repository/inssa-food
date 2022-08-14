@@ -16,7 +16,10 @@ const Core = () => {
   const imgRef = useRef();
 
   //쿠키 사용 준비
-  const [cookies, setCookie, removeCookie] = useCookies(["inputImage"]);
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "inputImage",
+    "imgFile",
+  ]);
 
   // 파일 저장
   const saveImageURL = async (e) => {
@@ -48,7 +51,10 @@ const Core = () => {
     //
     const formData = new FormData();
     formData.append("file", imgFile);
-    const res = await axios.post(urlPort.server + "/api/upload", formData);
+    await axios.post(urlPort.server + "/api/upload", formData).then((res) => {
+      console.log(res.data);
+      setCookie("imgFile", res.data);
+    });
   };
 
   return (
@@ -75,7 +81,8 @@ const Core = () => {
                 alt="sample"
                 id="imgPreview"
                 ref={imgRef}
-                src={imageURL}
+                // src={imageURL}
+                src={`http://localhost:3000/static/uploads/${cookies.imgFile}`}
                 style={{ margin: "auto", width: "224px", height: "224px" }}
               />
             )}

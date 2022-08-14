@@ -28,7 +28,9 @@ const upload = multer({
 // upload의 single 메서드는 하나의 이미지를 업로드할 때 사용
 router.post("/upload", upload.single("file"), (req, res) => {
   console.log(req.file);
-  res.json({ url: `/img/${req.file.filename}` });
+  res.json({
+    url: `/uploads/${req.file.filename}`,
+  });
 });
 
 module.exports = router;
