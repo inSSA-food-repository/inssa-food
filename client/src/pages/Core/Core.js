@@ -5,11 +5,14 @@ import "./Core.css";
 import $ from "jquery";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import axios from "axios";
+
+import urlPort from "../../data/urlPort.json";
 
 const Core = () => {
   const navigate = useNavigate();
 
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState(null);
   const imgRef = useRef();
 
   //쿠키 사용 준비
@@ -30,6 +33,24 @@ const Core = () => {
   const onClickToResultTemp = (id) => {
     navigate(`/resultinfo/${id}`);
   };
+
+  // ---------------------
+
+  const [imgFile, setImgFile] = useState("");
+
+  const formData_img = new FormData();
+
+  const onChangeImg = (e) => {
+    setImgFile(e.target.files[0]);
+  };
+
+  const onClickImgSend = async (id) => {
+    //
+    const formData = new FormData();
+    formData.append("file", imgFile);
+    const res = await axios.post(urlPort.server + "/api/upload", formData);
+  };
+
   return (
     // <div className="full-container">
     <div className="content-container-row">
@@ -60,12 +81,16 @@ const Core = () => {
             )}
             <input
               type="file"
-              onChange={saveImageURL}
-              name="uploadfile"
+              // onChange={saveImageURL}
+              onChange={onChangeImg}
+              // name="uploadfile"
               accept="image/*"
             />
+            <button onClick={onClickImgSend}>img센드</button>
             <button
-              onClick={() => {onClickToResultTemp("1")}}
+              onClick={() => {
+                onClickToResultTemp(1);
+              }}
               className="btn btn-danger btn-block"
               id="formsend"
             >
