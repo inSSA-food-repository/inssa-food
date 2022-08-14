@@ -21,6 +21,14 @@ const Core = () => {
     "imgFile",
   ]);
 
+  // 파일 저장
+  const onChangeImg = async (e) => {
+    setImgFile(e.target.files[0]);
+
+    const imgURL = URL.createObjectURL(e.target.files[0]);
+    setImageURL(imgURL);
+  };
+
   const onClickToResult = async (id) => {
     const formData = new FormData();
     formData.append("file", imgFile);
@@ -35,10 +43,6 @@ const Core = () => {
   // ---------------------
 
   const [imgFile, setImgFile] = useState("");
-
-  const onChangeImg = (e) => {
-    setImgFile(e.target.files[0]);
-  };
 
   return (
     // <div className="full-container">
@@ -63,9 +67,8 @@ const Core = () => {
               <img
                 alt="sample"
                 id="imgPreview"
-                ref={imgRef}
-                // src={imageURL}
-                src={`http://localhost:3000/static/uploads/${cookies.imgFile}`}
+                // ref={imgRef}
+                src={imageURL}
                 style={{ margin: "auto", width: "224px", height: "224px" }}
               />
             )}
