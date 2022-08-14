@@ -21,19 +21,14 @@ const Core = () => {
     "imgFile",
   ]);
 
-  // 파일 저장
-  const saveImageURL = async (e) => {
-    const imgURL = URL.createObjectURL(e.target.files[0]);
-    await setImageURL(imgURL);
-    setCookie("inputImage", imgURL, { path: "/" });
-    const inputImg = document.getElementById("imgPreview");
-    //쿠키에 이미지 넣음
-    console.log("이미지 파일 : ", inputImg);
-    console.log("이미지 URL : ", imgURL);
-  };
+  const onClickToResult = async (id) => {
+    const formData = new FormData();
+    formData.append("file", imgFile);
+    await axios.post(urlPort.server + "/api/upload", formData).then((res) => {
+      console.log(res.data);
+      setCookie("imgFile", res.data);
+    });
 
-  //   테스트용 임시 네비게이팅입니다.
-  const onClickToResultTemp = (id) => {
     navigate(`/resultinfo/${id}`);
   };
 
@@ -41,20 +36,8 @@ const Core = () => {
 
   const [imgFile, setImgFile] = useState("");
 
-  const formData_img = new FormData();
-
   const onChangeImg = (e) => {
     setImgFile(e.target.files[0]);
-  };
-
-  const onClickImgSend = async (id) => {
-    //
-    const formData = new FormData();
-    formData.append("file", imgFile);
-    await axios.post(urlPort.server + "/api/upload", formData).then((res) => {
-      console.log(res.data);
-      setCookie("imgFile", res.data);
-    });
   };
 
   return (
@@ -86,17 +69,11 @@ const Core = () => {
                 style={{ margin: "auto", width: "224px", height: "224px" }}
               />
             )}
-            <input
-              type="file"
-              // onChange={saveImageURL}
-              onChange={onChangeImg}
-              // name="uploadfile"
-              accept="image/*"
-            />
-            <button onClick={onClickImgSend}>img센드</button>
+            <input type="file" onChange={onChangeImg} accept="image/*" />
+
             <button
               onClick={() => {
-                onClickToResultTemp(1);
+                onClickToResult(1);
               }}
               className="btn btn-danger btn-block"
               id="formsend"

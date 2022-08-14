@@ -49,7 +49,7 @@ const ResultInfo = () => {
   };
 
   const historyInfo = {
-    img: cookies.inputImage,
+    img: urlPort.server + cookies.imgFile.url,
     food: cookies.foodInfo,
     userId: cookies.userData.id,
   };
@@ -57,10 +57,6 @@ const ResultInfo = () => {
   const getFoodInfo = async () => {
     return await axios.get(`${urlPort.server}/foodInfo/${params.id}/find`);
   };
-
-  // const getImgFile = async () => {
-  //   return await axios.get(`${urlPort.server}/api/img/${cookies.imgFile}`);
-  // };
 
   return (
     <div className="resultInfo-container">
@@ -70,7 +66,7 @@ const ResultInfo = () => {
           <div className="result-item img-box">
             <img
               className="result-item img"
-              src={"http://localhost:8080" + cookies.imgFile.url}
+              src={urlPort.server + cookies.imgFile.url}
               alt="react"
               width={"200px"}
             />
