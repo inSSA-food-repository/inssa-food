@@ -43,6 +43,7 @@ function App() {
           <Route path="kakao/callback" element={<KakaoCallBack />} />
           <Route path="kakao/signup" element={<SocialSignUp />} />
         </Route>
+        <Route path="about" element={""} />
       </Routes>
 
       <Footer />

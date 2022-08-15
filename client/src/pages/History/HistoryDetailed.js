@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 
@@ -15,6 +15,8 @@ const Detail = () => {
 
   const [detailData, setDetailData] = useState({});
 
+  const navigate = useNavigate()
+
   useEffect(() => {
 
       findDetailData().then(res => {
@@ -25,11 +27,26 @@ const Detail = () => {
   }, []);
 
   const findDetailData = async () => {
-      return await axios.get(urlPort.url + `/histories/${params.id}/find`, {
-          headers: {
-              accessToken: cookies.userData.accessToken
-          }
-      })
+      // return await axios.get(urlPort.url + `/histories/${params.id}/find`, {
+      //     headers: {
+      //         accessToken: cookies.userData.accessToken
+      //     }
+      // })
+      try {
+        axios
+          .get(urlPort.server + "/histories", cookies.userData.id, {
+            headers: {
+              accessToken: cookies.userData.accessToken,
+            },
+          })
+          .then((res) => {
+            console.log(res);
+            // setHistoryData(res.data.histories);
+          });
+      } catch (e) {
+        console.log(`[응답오류]: ${e}`);
+        navigate("/core");
+      }
   }
 
   return (
