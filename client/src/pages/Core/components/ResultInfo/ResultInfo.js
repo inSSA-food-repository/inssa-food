@@ -42,7 +42,7 @@ const ResultInfo = () => {
 
   const onClickSaveHistory = async () => {
     await postHistoryData();
-    await navigate("/history");
+    await navigate("/history/list");
   };
   const postHistoryData = async () => {
     return await axios.post(urlPort.server + "/histories", historyInfo);
