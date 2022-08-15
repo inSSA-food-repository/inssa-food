@@ -116,9 +116,6 @@ const Core = () => {
       </div>
 
       <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-      <div>
-        <a id="kakao-link-btn" href="javascript:kt2('9');"></a>
-      </div>
     </div>
     // </div>
   );
