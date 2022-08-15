@@ -63,7 +63,6 @@ const ResultInfo = () => {
     return await axios.post(urlPort.server + "/histories", historyInfo);
   };
 
-
   //유저 인풋(Title, Comment) 제외한 히스토리 정보 => onClickSaveHistory 실행시 인풋정보랑 합침!!!
   const historyInfoOne = {
     img: urlPort.server + cookies.imgFile.url,
