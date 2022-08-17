@@ -109,14 +109,15 @@ const Header = () => {
             >
               LogOut
             </button>
-            <Button
-            className="social-btn google"
+            &nbsp;&nbsp;
+            <button
+            className="logIn-btn log-btn btn btn-secondary"
             // startIcon={<googleLogo />}
             variant="contained"
             onClick={() => navigate('/login/resetpassword')}
           >
             Reset Password
-          </Button>
+          </button>
           </div>
         )}
       </div>
