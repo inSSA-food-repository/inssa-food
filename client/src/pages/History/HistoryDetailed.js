@@ -8,7 +8,6 @@ import urlPort from "../../data/urlPort.json";
 import ReactAudioPlayer from "react-audio-player";
 import ReactPlayer from "react-player";
 
-
 const Detail = () => {
   //// 유저 및 history 백엔드까지 완성 시 활성화
   const params = useParams();
@@ -19,6 +18,7 @@ const Detail = () => {
   
   const navigate = useNavigate();
 
+
   // const dispatch = useDispatch(); //action을 사용하기 위해 값을 보내주는 역할.
 
   useEffect(() => {
@@ -27,12 +27,12 @@ const Detail = () => {
           // console.log(res);
           setDetailData({...res.data, recipie_url: ""});
       });
-
   }, []);
 
   useEffect(()=> {console.log("detailData 받아옴 : ", detailData)}, [detailData])
 
   const findDetailData = async () => {
+
       return await axios.get(urlPort.server + `/histories/${params.id}/find`, {
           headers: {
               accessToken: cookies.userData.accessToken
@@ -41,19 +41,22 @@ const Detail = () => {
       try {
         axios
           .get(urlPort.server + "/histories", cookies.userData.id, {
+
             headers: {
               accessToken: cookies.userData.accessToken,
             },
-          })
-          .then((res) => {
-            console.log(res);
-            // setHistoryData(res.data.histories);
-          });
-      } catch (e) {
-        console.log(`[응답오류]: ${e}`);
-        navigate("/core");
-      }
-  }
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          // setHistoryData(res.data.histories);
+        });
+    } catch (e) {
+      console.log(`[응답오류]: ${e}`);
+      navigate("/core");
+    }
+  };
+
 
   const deleteHistory =  async (shortId) => {
     return await axios.get(`${urlPort.server}/histories/${shortId}/delete`, {headers: {accessToken: cookies.userData.accessToken}})
@@ -110,13 +113,17 @@ const Detail = () => {
           </div>
         <div className="card mb-3">
           <div className="card-img-top" style={{ textAlign: "center" }}>
+
             <img style={{width:"100px", height: "100px"}} src={detailData.user_inputImg} alt="..." />
+
           </div>
           <div className="card-body">
             <h5 className="card-title"></h5>
             <p className="card-text"></p>
             <p className="card-text">
+
               <small className="text-muted"></small>
+
             </p>
           </div>
         </div>

@@ -1,6 +1,6 @@
+
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-
 import Header from "./common/components/Header";
 import Footer from "./common/components/Footer";
 import Home from "./pages/Home/Home.js";
@@ -31,6 +31,7 @@ function App() {
     <div className="App">
       {/* <Provider store={Store}> */}
       <Header />
+        
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
