@@ -144,7 +144,7 @@ const Core = () => {
         <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
       </div>
       //{" "}
-    </div>
+    // </div>
   );
 };
 export default Core;
