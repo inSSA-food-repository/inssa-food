@@ -33,7 +33,7 @@ const Header = () => {
 
   const logoSizeNum = 15;
   return (
-    <header className="p-3  text-bg-dark header-container">
+    <header className="p-3 header-container">
       <div className="logo-box">
         <img
           src={`${process.env.PUBLIC_URL}/InssaFood_logo2.png`}

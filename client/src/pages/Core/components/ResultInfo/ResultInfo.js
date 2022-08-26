@@ -106,7 +106,6 @@ const ResultInfo = () => {
       ) : (
         <div className="result">
           <div className="result-container">
-            <div className="black-box"></div>
             <img
               className="main_food_image"
               src={cookies.imgFile}
@@ -114,26 +113,9 @@ const ResultInfo = () => {
               crossOrigin="anonymous"
               referrerpolicy="unsafe-url"
             />
-
-            <label htmlFor="history-title">Title</label>
-            <input
-              name="history-title"
-              onChange={(e) => {
-                setHistoryInput({ ...historyInput, title: e.target.value });
-              }}
-              type="text"
-            />
-            <label htmlFor="history-comment">Comment</label>
-            <textarea
-              name="history-comment"
-              onChange={(e) => {
-                setHistoryInput({ ...historyInput, comment: e.target.value });
-              }}
-              type="text"
-            />
           </div>
 
-          <div className="black-shadow">
+          <div>
             <div className="text-part1">
               <div className="result-item name">
                 <h1 className="korean_food_name">{foodInfo.name_Eng}</h1>
@@ -193,7 +175,24 @@ const ResultInfo = () => {
           </div>
         </div>
       )}
-
+      <div className="input-container">
+      <label htmlFor="history-title">Title</label>
+            <input
+              name="history-title"
+              onChange={(e) => {
+                setHistoryInput({ ...historyInput, title: e.target.value });
+              }}
+              type="text"
+            />
+            <label htmlFor="history-comment">Comment</label>
+            <textarea
+              name="history-comment"
+              onChange={(e) => {
+                setHistoryInput({ ...historyInput, comment: e.target.value });
+              }}
+              type="text"
+            />
+      </div>
       <div className="btn-container">
         <Button
           className="btn-item"
