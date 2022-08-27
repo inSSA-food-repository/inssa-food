@@ -110,26 +110,31 @@ const ResultInfo = () => {
               src={cookies.imgFile}
               alt="react"
               crossOrigin="anonymous"
-              referrerpolicy="unsafe-url"
+              referrerPolicy="unsafe-url"
               style={{ margin: "auto", width: "100%", height: "100%" }}
             />
           </div>
+          <div className="container-contents">
+          <div className="item-name">{foodInfo.name}</div>
             <div className="text-part1">
-                <h1 className="korean_food_name">{foodInfo.name_Eng}</h1>
+                <h1 className="item-nameEng">{foodInfo.name_Eng}</h1>
                 {/* <h1 className="food_Number">No. 3</h1> */}
               <div className="result-item spicy">
-                {" "}
                 Spicy: 🌶️ ✖️ {foodInfo.spicy}
               </div>
+            </div>
             </div>
 
           <div className="food_detail_back">
             <div className="simple_list">
               <div className="result-item caution">
-                caution <br />{" "}
+                caution <br />
                 <div className="foodinfo_caution"> {foodInfo.caution}</div>
               </div>
+            <div className="shape-square" />
             </div>
+
+            
             <div className="result-item order_learn_audio">
               <ReactAudioPlayer
                 className="audio_player"
