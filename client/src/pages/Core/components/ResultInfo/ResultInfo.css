@@ -207,11 +207,21 @@ p.title {
 .input-container {
   display: flex;
   flex-direction: column;
+  background-color: orange;
+  margin-top: 60px;
+  color: white;
+}
+
+.userInput-title {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 700;
 }
 
 .history-inputs {
   margin : 1em 0 1em 0;
-  border-style: 2em;
 }
 
 label {
