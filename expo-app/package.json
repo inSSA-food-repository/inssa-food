@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "expo": "^46.0.10",
+    "expo-camera": "^12.3.0",
+    "expo-media-library": "^14.2.0",
+    "react-native": "^0.70.1",
+    "react-native-webview": "11.23.0"
+  }
+}
